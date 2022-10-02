@@ -41,6 +41,16 @@ public class Trader<T> {
      */
 
 
+    /**
+     * Construct a Trader, giving them the given money.
+     *
+     * @param money The Trader's money
+     */
+    public Trader(int money) {
+        this.inventory = new ArrayList<>();
+        this.wishlist = new ArrayList<>();
+        this.money = money;
+    }
 
 
 
@@ -48,7 +58,14 @@ public class Trader<T> {
      *       object of type T and adds it to this Trader's wishlist.
      */
 
-
+    /**
+     * Add the given object of type T to this Trader's wishlist.
+     *
+     * @param object The object to be added to this Trader's wishlist
+     */
+    public void addToWishlist(T object){
+        this.wishlist.add(object);
+    }
 
 
 
@@ -60,7 +77,18 @@ public class Trader<T> {
      *       We will call this in exchangeMoney().
      */
 
-
+    /**
+     * Return the price of the given object of type T if it is Tradable.
+     * Return Tradable.MISSING_PRICE if the object is not Tradable.
+     *
+     * @param object The object whose type will be returned if Tradable
+     */
+    public int getSellingPrice(T object){
+        if (object instanceof Tradable){
+            return ((Tradable) object).getPrice();
+        }
+        return Tradable.MISSING_PRICE;
+    }
 
 
 

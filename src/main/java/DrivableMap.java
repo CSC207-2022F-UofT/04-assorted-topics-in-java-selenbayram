@@ -28,7 +28,23 @@ class DrivableMap {
      *       Return true if the Drivable was added to drivable_map.
      */
 
+    /**
+     * If the given objID string does not appear as a key
+     * in drivable_map, add the given String objID, Drivable
+     * object pair to drivable_map and return true.
+     *
+     * @param objID The ID of the Drivable object
+     * @param object A Drivable object
+     * @return true if the key-value pair is added to drivable_map
+     */
 
+    public boolean addDrivable(String objID, Drivable object) {
+        if (!this.drivable_map.containsKey(objID)){
+            this.drivable_map.put(objID, object);
+            return true;
+        }
+        return false;
+    }
 
 
     /* TODO: Write a method named hasFasterThan that takes an int (a speed)
@@ -38,16 +54,44 @@ class DrivableMap {
      * iterate through drivable_map.
      */
 
+    /**
+     * Return true iff there is at least one item in drivable_map
+     * that has a maxSpeed greater than or equal to the given int speed.
+     *
+     * @param speed The reference speed
+     * @return true iff an item with a maxSpeed >= given speed is found in drivable_map
+     */
 
-
-
+    public boolean hasFasterThan(int speed){
+        for (Drivable d : drivable_map.values()){
+            if (d.getMaxSpeed() >= speed) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /* TODO: Write a method named getTradable that takes no arguments and
      *       returns a List containing all of the Tradable items in
      *       drivable_map.
      */
 
+    /**
+     * Return a List containing all the Tradable items in
+     * drivable_map.
+     *
+     * @return a List with Tradable items in drivable_map
+     */
 
+    public List<Tradable> getTradable() {
+        List<Tradable> l = new ArrayList<>();
 
-    
+        for (Drivable d : drivable_map.values()) {
+            if (d instanceof Tradable) {
+                l.add((Tradable) d);
+            }
+        }
+        return l;
+    }
+
 }
